@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dutch Bucket Guide</title>
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <style>
+        /* 1. Design System - Mandatory Variables */
+        :root {
+            --primary: #2f855a;       /* Green */
+            --primary-dark: #22543d;  /* Dark Green for Gradients */
+            --accent: #3182ce;        /* Blue */
+            --bg: #f0fdf4;            /* Light Mint Background */
+            --card-bg: #ffffff;       /* White Cards */
+            --text: #2d3748;          /* Dark Grey Text */
+            --border: #e2e8f0;        /* Light Grey Border */
+            --border-radius: 12px;    /* Soft Corners */
+            --danger: #e53e3e;        /* Red for Warnings */
+            --warning: #f6e05e;       /* Yellow for Caution */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem 4rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 0 0 20px 20px;
+            margin-bottom: -20px;
+        }
+
+        header h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .source-link {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary);
+            padding: 0.5rem 1.2rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            font-size: 0.9rem;
+        }
+
+        .source-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Container & Cards */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1rem 2rem 1rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--primary-dark);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--accent);
+            margin-top: 1.5rem;
+        }
+
+        /* The Secret Sauce Box */
+        .secret-sauce {
+            background-color: #ebf8ff; /* Light Blue tint */
+            border-left: 5px solid var(--accent);
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .secret-sauce strong {
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.2em;
+        }
+
+        /* Calculator Styling */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            align-items: center;
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+
+        input[type="number"], select {
+            padding: 0.8rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        input[type="number"]:focus, select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(47, 133, 90, 0.2);
+        }
+
+        .results {
+            margin-top: 1.5rem;
+            display: grid;
+            gap: 10px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .result-value {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* SVG Styling */
+        .schematic-container {
+            text-align: center;
+            margin: 1rem 0;
+        }
+        svg {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #fafafa;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.02);
+        }
+        .svg-label {
+            font-family: sans-serif;
+            font-size: 12px;
+            fill: #4a5568;
+            font-weight: 600;
+        }
+
+        /* Warning/Tip Boxes */
+        .warning-box {
+            border-left: 5px solid var(--danger);
+            background-color: #fff5f5;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .tip-box {
+            border-left: 5px solid var(--warning);
+            background-color: #fffff0;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .checklist li:hover {
+            background-color: #f7fafc;
+        }
+
+        .checklist input[type="checkbox"] {
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Video Grid Styling */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .video-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--text);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-thumb {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background-size: cover;
+            background-position: center;
+            background-color: #cbd5e0;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .video-info {
+            padding: 1rem;
+            flex-grow: 1;
+        }
+
+        .video-title {
+            font-weight: bold;
+            font-size: 1rem;
+            line-height: 1.4;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-meta {
+            font-size: 0.85rem;
+            color: #718096;
+        }
+
+        /* Navigation Toggle Button */
+        .nav-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-toggle:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .nav-toggle .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .nav-toggle .hamburger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .nav-toggle.active .hamburger span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active .hamburger span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active .hamburger span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Navigation Overlay */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Navigation Panel */
+        .nav-panel {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 300px;
+            height: 100vh;
+            background: var(--card-bg);
+            box-shadow: none;
+            z-index: 1000;
+            padding: 80px 25px 25px 25px;
+            overflow-y: auto;
+            transition: left 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .nav-panel.active {
+            left: 0;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+        }
+
+        .nav-panel h3 {
+            margin: 0 0 20px 0;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+        }
+
+        .nav-panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-panel li {
+            margin: 0;
+        }
+
+        .nav-panel a {
+            color: var(--accent);
+            text-decoration: none;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-size: 1rem;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-panel a:hover {
+            background: var(--bg);
+            color: var(--primary);
+            border-left-color: var(--primary);
+        }
+
+        .nav-panel a.active {
+            background: var(--primary);
+            color: white;
+            border-left-color: var(--primary-dark);
+        }
+
+        /* Mobile optimisations */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                top: 15px;
+                left: 15px;
+                padding: 10px 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-panel {
+                width: 85%;
+                padding: 70px 20px 20px 20px;
+            }
+        }
+
+        /* Home Button */
+        .home-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .home-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 768px) {
+            .home-btn {
+                top: 15px;
+                right: 15px;
+                padding: 8px 14px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Home Button -->
+<a href="index.html" class="home-btn">🏠 Home</a>
+
+<!-- Navigation Toggle Button -->
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <span>Menu</span>
+</button>
+
+<!-- Navigation Overlay -->
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- Navigation Panel -->
+<nav class="nav-panel" id="navPanel">
+    <h3>Quick Links</h3>
+    <ul>
+        <li><a href="#concept">The Concept</a></li>
+        <li><a href="#schematic">System Schematic</a></li>
+        <li><a href="#build">Step-by-Step Build</a></li>
+        <li><a href="#calculator">Nutrient Calculator</a></li>
+        <li><a href="#tips">Pro-Tips & Schedule</a></li>
+        <li><a href="#videos">Video Reference</a></li>
+    </ul>
+</nav>
+
+<header>
+    <h1>🍅 Dutch Bucket Guide</h1>
+    <p>A comprehensive guide to the DIY "Bato Bucket" System for massive tomato yields.</p>
+    <a href="https://www.youtube.com/watch?v=nXy32Dr4Z4A" target="_blank" class="source-link">📺 Watch the Core Tutorial</a>
+</header>
+
+<div class="container">
+
+    <!-- Card 1: Concept & Secret Sauce -->
+    <div class="card" id="concept">
+        <h2>The Concept</h2>
+        <p>The Dutch Bucket (or Bato Bucket) system is a recirculating hydroponic method optimized for large fruiting crops like tomatoes, cucumbers, and peppers. While commercial buckets cost $7+ each, MHPGardener developed a method using standard 3.5 to 5-gallon buckets and simple hardware store parts.</p>
+        
+        <div class="secret-sauce">
+            <strong>✨ The Secret Sauce</strong>
+            <p>1. <strong>Paint Strainer Bags:</strong> Instead of filling the entire bucket with loose perlite (which clogs drains and makes end-of-season cleanup a nightmare), line the bucket with a 5-gallon paint strainer bag. This keeps the medium contained and allows you to lift the entire root ball out cleanly.</p>
+            <p>2. <strong>The "Siphon" Elbow:</strong> A simple PVC elbow placed on the <em>inside</em> of the drain hole creates a ~2-inch deep nutrient reservoir at the bottom of every bucket. This provides a safety buffer for roots in case of pump failure or hot days.</p>
+        </div>
+    </div>
+
+    <!-- Card 2: Visualization -->
+    <div class="card" id="schematic">
+        <h2>🛠️ System Schematic</h2>
+        <div class="schematic-container">
+            <svg viewBox="0 0 500 320">
+                <!-- Defs for arrowheads -->
+                <defs>
+                    <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+                        <path d="M0,0 L0,6 L9,3 z" fill="#3182ce" />
+                    </marker>
+                </defs>
+
+                <!-- Rail System -->
+                <rect x="50" y="240" width="400" height="20" fill="#e2e8f0" stroke="#2d3748" />
+                <rect x="50" y="260" width="20" height="40" fill="#a0aec0" />
+                <rect x="430" y="260" width="20" height="40" fill="#a0aec0" />
+
+                <!-- 2" Drain Pipe -->
+                <rect x="60" y="220" width="380" height="20" fill="#fff" stroke="#2d3748" rx="5" />
+                <text x="320" y="235" class="svg-label" fill="gray">2" PVC Drain Line</text>
+
+                <!-- The Bucket -->
+                <rect x="150" y="50" width="140" height="170" fill="white" stroke="#2d3748" stroke-width="2"/>
+                
+                <!-- Paint Strainer Bag outline -->
+                <path d="M155,55 L285,55 L280,210 L160,210 Z" fill="none" stroke="#2f855a" stroke-dasharray="5,3" stroke-width="2"/>
+                <text x="210" y="100" class="svg-label" fill="#2f855a" text-anchor="middle">5-Gal Paint Strainer Bag</text>
+                
+                <!-- Perlite -->
+                <circle cx="170" cy="80" r="2" fill="#e2e8f0" />
+                <circle cx="200" cy="120" r="2" fill="#e2e8f0" />
+                <circle cx="240" cy="150" r="2" fill="#e2e8f0" />
+                <text x="220" y="125" class="svg-label" fill="#a0aec0" text-anchor="middle">100% Perlite Medium</text>
+
+                <!-- Siphon Elbow Setup -->
+                <rect x="270" y="180" width="20" height="10" fill="#2d3748" rx="2" /> <!-- Grommet/Stub -->
+                <!-- The Elbow inside -->
+                <path d="M270,185 L250,185 L250,205" fill="none" stroke="#2d3748" stroke-width="6" stroke-linecap="round" /> 
+                <text x="195" y="195" class="svg-label" text-anchor="end">Internal Elbow (Reservoir)</text>
+
+                <!-- Water Line (Internal Reservoir) -->
+                <path d="M152,190 L288,190 L288,218 L152,218 Z" fill="#3182ce" opacity="0.2" />
+
+                <!-- Feed Line -->
+                <path d="M80,50 L180,50 L180,60" fill="none" stroke="#3182ce" stroke-width="3" marker-end="url(#arrow)" />
+                <text x="70" y="45" class="svg-label" fill="#3182ce">Nutrient Feed</text>
+                
+                <!-- Plant -->
+                <path d="M220,60 L220,10" stroke="#2f855a" stroke-width="4"/>
+                <circle cx="220" cy="10" r="10" fill="#2f855a"/>
+                
+                <!-- Drip into return -->
+                <path d="M290,185 L290,225" stroke="#3182ce" stroke-width="2" stroke-dasharray="4"/>
+            </svg>
+            <p><em>Figure 1: The "DIY Dutch Bucket" using a siphon elbow to maintain a 2-inch nutrient zone.</em></p>
+        </div>
+    </div>
+
+    <!-- Card 3: Step-by-Step Guide -->
+    <div class="card" id="build">
+        <h2>📝 The Build Process</h2>
+        
+        <h3>1. Bucket Preparation</h3>
+        <ul class="checklist">
+            <li><input type="checkbox"> Acquire <strong>3 to 5-gallon buckets</strong> (Square buckets sit nicer on rails, but round works perfectly fine).</li>
+            <li><input type="checkbox"> Drill a <strong>1-inch hole</strong> exactly <strong>2 inches up from the bottom</strong> of the bucket. This specific height sets your internal water reservoir level.</li>
+            <li><input type="checkbox"> Insert a <strong>3/4" rubber grommet</strong> into the 1-inch hole.</li>
+            <li><input type="checkbox"> Insert a small piece of 1/2" PVC pipe through the grommet to act as the drain stub.</li>
+            <li><input type="checkbox"> <strong>The Trick:</strong> Attach a 1/2" PVC elbow on the <em>inside</em> of the bucket, pointing DOWN. This forces water to rise to the level of the hole before draining, ensuring roots always have access to liquid.</li>
+        </ul>
+
+        <h3>2. The Drain & Feed System</h3>
+        <ul class="checklist">
+            <li><input type="checkbox"> Sit buckets on a support structure (wood bench or cinder blocks).</li>
+            <li><input type="checkbox"> Run a <strong>2-inch PVC pipe</strong> underneath the bucket drains. Drill holes in the 2" pipe to accept the drain stubs from the buckets.</li>
+            <li><input type="checkbox"> Run <strong>1/2" Poly tubing</strong> along the buckets for the main feed line.</li>
+            <li><input type="checkbox"> Punch holes and insert <strong>1/4" spaghetti tubing</strong> (or drip emitters) to feed the top of each plant.</li>
+            <li><input type="checkbox"> <strong>Pump:</strong> A 264 GPH submersible pump (like EcoPlus 264) is sufficient for a standard setup of 10-20 buckets.</li>
+        </ul>
+
+        <h3>3. Planting</h3>
+        <ul class="checklist">
+            <li><input type="checkbox"> <strong>Wash your perlite</strong> thoroughly to remove dust. Do this outside with a hose!</li>
+            <li><input type="checkbox"> Place a <strong>5-gallon paint strainer bag</strong> into the bucket.</li>
+            <li><input type="checkbox"> Fill the bag with the washed perlite.</li>
+            <li><input type="checkbox"> Transplant seedlings directly into the perlite.</li>
+        </ul>
+    </div>
+
+    <!-- Card 4: Nutrient Calculator -->
+    <div class="card" id="calculator">
+        <h2>🧪 Masterblend Nutrient Calculator</h2>
+        <p>MHPGardener swears by the <strong>Masterblend 4-18-38 Tomato Formula</strong>. It is a 3-part dry mix consisting of Masterblend, Calcium Nitrate, and Epsom Salt. Use this tool to calculate your mix based on his specific 5-gallon ratio (12g MB : 12g CalNit : 6g Epsom).</p>
+        
+        <div class="calculator-grid">
+            <div class="input-group">
+                <label for="volume">Water Volume</label>
+                <input type="number" id="volume" value="5" min="1" oninput="calculateNutrients()">
+            </div>
+            <div class="input-group">
+                <label for="unit">Unit System</label>
+                <select id="unit" onchange="convertAndCalculate()">
+                    <option value="imperial">Gallons</option>
+                    <option value="metric">Liters</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="results">
+            <div class="result-item">
+                <span>Masterblend (4-18-38):</span>
+                <span class="result-value" id="res-mb">12.0 g</span>
+            </div>
+            <div class="result-item">
+                <span>Calcium Nitrate (15.5-0-0):</span>
+                <span class="result-value" id="res-cal">12.0 g</span>
+            </div>
+            <div class="result-item">
+                <span>Epsom Salt (Magnesium Sulfate):</span>
+                <span class="result-value" id="res-epsom">6.0 g</span>
+            </div>
+        </div>
+        
+        <div class="warning-box">
+            <strong>⚠️ Critical Mixing Order:</strong> Never mix concentrated Calcium Nitrate and Masterblend together in a small amount of water—they will lock out (precipitate). 
+            <br><br>
+            1. Dissolve Masterblend in warm water first.<br>
+            2. Add Epsom Salt and dissolve.<br>
+            3. Add Calcium Nitrate <strong>LAST</strong>, only after the others are diluted into the main reservoir volume.
+        </div>
+    </div>
+
+    <!-- Card 5: Pro-Tips & Watering -->
+    <div class="card" id="tips">
+        <h2>💡 Pro-Tips & Schedule</h2>
+        
+        <div class="tip-box">
+            <strong>⏱️ The 30-Minute Rule:</strong><br>
+            Start with a digital timer set to run for <strong>30 minutes, 3 times per day</strong> (e.g., 7am, 1pm, 7pm).
+            <br><em>Adjustment:</em> If plants wilt in peak summer heat (July/August), increase the duration to 45 mins or add a 4th cycle. Watch the plants—they will tell you what they need.
+        </div>
+
+        <ul class="checklist">
+            <li><strong>Pollination:</strong> Tomatoes are self-fertile but need vibration. Use an inexpensive battery-operated toothbrush to vibrate the flower clusters every few days to ensure fruit set.</li>
+            <li><strong>Reservoir Temps:</strong> Bury your main reservoir tub in the ground partially. The earth insulates the water, keeping the nutrient solution cooler in summer, preventing root rot.</li>
+            <li><strong>Pruning:</strong> MHPGardener recommends a single or double-stem approach. Be aggressive with suckering to manage growth and prevent disease.</li>
+            <li><strong>Pump Protection:</strong> Place the submersible pump inside a mesh filter bag (like a paint strainer) in the reservoir. This prevents perlite dust or rogue roots from clogging the intake.</li>
+        </ul>
+    </div>
+
+    <!-- Card 6: Video Reference Library -->
+    <div class="card" id="videos">
+        <h2>📺 Video Reference Library</h2>
+        <p>Direct links to the original MHPGardener tutorials used to compile this manual.</p>
+        
+        <div class="video-grid">
+            <!-- Video 1 -->
+            <a href="https://www.youtube.com/watch?v=nXy32Dr4Z4A" target="_blank" class="video-card">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/nXy32Dr4Z4A/mqdefault.jpg')">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <span class="video-title">Dutch Bucket Hydroponics - How It Works & How to Make Your Own</span>
+                    <span class="video-meta">The core build tutorial.</span>
+                </div>
+            </a>
+
+            <!-- Video 2 -->
+            <a href="https://www.youtube.com/watch?v=1o9LiRIRSgI" target="_blank" class="video-card">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/1o9LiRIRSgI/mqdefault.jpg')">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <span class="video-title">Tips & Expanding the Reservoir</span>
+                    <span class="video-meta">Upgrading the system capacity.</span>
+                </div>
+            </a>
+
+            <!-- Video 3 -->
+            <a href="https://www.youtube.com/watch?v=mGAoloeEJfA" target="_blank" class="video-card">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/mGAoloeEJfA/mqdefault.jpg')">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <span class="video-title">Pruning, Stringing, and Pollinating</span>
+                    <span class="video-meta">Maintenance techniques for high yields.</span>
+                </div>
+            </a>
+
+            <!-- Video 4 -->
+            <a href="https://www.youtube.com/watch?v=b_ZZmYNKbfU" target="_blank" class="video-card">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/b_ZZmYNKbfU/mqdefault.jpg')">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <span class="video-title">Lessons Learned and a New Crop</span>
+                    <span class="video-meta">Refining the process.</span>
+                </div>
+            </a>
+
+            <!-- Video 5 -->
+            <a href="https://www.youtube.com/watch?v=MRTYWrPXkZg" target="_blank" class="video-card">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/MRTYWrPXkZg/mqdefault.jpg')">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <span class="video-title">Adjusting the Watering Schedule</span>
+                    <span class="video-meta">Dialing in the timer for heat.</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Constants based on MHPGardener's 5-gallon recipe
+    const RECIPE_PER_GALLON = {
+        mb: 2.4,    // 12g / 5 gal
+        cal: 2.4,   // 12g / 5 gal
+        epsom: 1.2  // 6g / 5 gal
+    };
+
+    // 1 Gallon = 3.78541 Liters
+    const LITERS_PER_GALLON = 3.78541;
+
+    function calculateNutrients() {
+        const volumeInput = parseFloat(document.getElementById('volume').value) || 0;
+        const unit = document.getElementById('unit').value;
+        
+        let gallons = 0;
+
+        if (unit === 'imperial') {
+            gallons = volumeInput;
+        } else {
+            gallons = volumeInput / LITERS_PER_GALLON;
+        }
+
+        // Calculate grams
+        const mbGrams = gallons * RECIPE_PER_GALLON.mb;
+        const calGrams = gallons * RECIPE_PER_GALLON.cal;
+        const epsomGrams = gallons * RECIPE_PER_GALLON.epsom;
+
+        // Update DOM
+        document.getElementById('res-mb').innerText = mbGrams.toFixed(1) + ' g';
+        document.getElementById('res-cal').innerText = calGrams.toFixed(1) + ' g';
+        document.getElementById('res-epsom').innerText = epsomGrams.toFixed(1) + ' g';
+    }
+
+    function convertAndCalculate() {
+        const volumeInput = document.getElementById('volume');
+        const unit = document.getElementById('unit').value;
+        let currentVal = parseFloat(volumeInput.value) || 0;
+
+        // Convert the input number visually when switching units for better UX
+        if (unit === 'metric') {
+            // Switched from Gal to Liters
+            volumeInput.value = (currentVal * LITERS_PER_GALLON).toFixed(1);
+        } else {
+            // Switched from Liters to Gal
+            volumeInput.value = (currentVal / LITERS_PER_GALLON).toFixed(1);
+        }
+        
+        calculateNutrients();
+    }
+
+    // Navigation Toggle Logic
+    const navToggle = document.getElementById('navToggle');
+    const navPanel = document.getElementById('navPanel');
+    const navOverlay = document.getElementById('navOverlay');
+
+    function openNav() {
+        navPanel.classList.add('active');
+        navOverlay.classList.add('active');
+        navToggle.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling when nav is open
+    }
+
+    function closeNav() {
+        navPanel.classList.remove('active');
+        navOverlay.classList.remove('active');
+        navToggle.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    navToggle.addEventListener('click', () => {
+        if (navPanel.classList.contains('active')) {
+            closeNav();
+        } else {
+            openNav();
+        }
+    });
+
+    navOverlay.addEventListener('click', closeNav);
+
+    // Smooth scrolling and active link highlighting
+    document.querySelectorAll('.nav-panel a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+
+            if (targetSection) {
+                closeNav(); // Close nav when clicking a link
+
+                // Small delay to allow nav to close smoothly
+                setTimeout(() => {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 300);
+
+                // Update active state
+                document.querySelectorAll('.nav-panel a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            }
+        });
+    });
+
+    // Highlight active section on scroll
+    const sections = document.querySelectorAll('.card[id]');
+    const navLinks = document.querySelectorAll('.nav-panel a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= sectionTop - 100) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Close nav on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navPanel.classList.contains('active')) {
+            closeNav();
+        }
+    });
+
+    // Initial calc
+    calculateNutrients();
+</script>
+
+</body>
+</html>

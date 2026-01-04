@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydroponic Wick Systems Guide</title>
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <style>
+        :root {
+            --primary: #2f855a;
+            --primary-dark: #22543d;
+            --accent: #2b6cb0;
+            --bg: #f7fafc;
+            --card-bg: #ffffff;
+            --text: #2d3748;
+            --border: #e2e8f0;
+            --warning: #ed8936;
+            --danger: #e53e3e;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 { margin: 0; font-size: 2.5rem; letter-spacing: 1px; }
+        header p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
+
+        .source-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .source-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Sections */
+        section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        h2 { color: var(--primary-dark); border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-top: 0; }
+        h3 { color: var(--accent); margin-top: 25px; }
+
+        /* Secret Sauce */
+        .secret-sauce {
+            background: #fffaf0;
+            border-left: 5px solid var(--warning);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        /* Schematic */
+        .schematic-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            background: #f0fff4;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #c6f6d5;
+        }
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Calculator */
+        .calculator-box {
+            background: #ebf8ff;
+            border: 2px solid var(--accent);
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .calc-group {
+            margin-bottom: 1rem;
+        }
+
+        .calc-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+        }
+
+        .calc-group input, .calc-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .results {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border: 2px solid var(--primary);
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+
+        .result-row:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Warnings */
+        .warning-box {
+            background-color: #fff5f5;
+            border-left: 5px solid var(--danger);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .checklist li:hover {
+            background-color: #f7fafc;
+        }
+
+        .checklist input[type="checkbox"] {
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .strikethrough {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .video-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s;
+            text-decoration: none;
+        }
+
+        .video-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-thumb {
+            width: 100%;
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            background-color: #cbd5e0;
+            position: relative;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .video-info {
+            padding: 15px;
+        }
+
+        .video-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: var(--text);
+        }
+
+        /* SVG Styles */
+        text { font-family: sans-serif; }
+
+        /* Navigation Toggle Button */
+        .nav-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-toggle:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .nav-toggle .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .nav-toggle .hamburger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .nav-toggle.active .hamburger span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active .hamburger span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active .hamburger span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Navigation Overlay */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Navigation Panel */
+        .nav-panel {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 300px;
+            height: 100vh;
+            background: var(--card-bg);
+            box-shadow: none;
+            z-index: 1000;
+            padding: 80px 25px 25px 25px;
+            overflow-y: auto;
+            transition: left 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .nav-panel.active {
+            left: 0;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+        }
+
+        .nav-panel h3 {
+            margin: 0 0 20px 0;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+        }
+
+        .nav-panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-panel li {
+            margin: 0;
+        }
+
+        .nav-panel a {
+            color: var(--accent);
+            text-decoration: none;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-size: 1rem;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-panel a:hover {
+            background: var(--bg);
+            color: var(--primary);
+            border-left-color: var(--primary);
+        }
+
+        .nav-panel a.active {
+            background: var(--primary);
+            color: white;
+            border-left-color: var(--primary-dark);
+        }
+
+        /* Home Button */
+        .home-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .home-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Mobile optimisations */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                top: 15px;
+                left: 15px;
+                padding: 10px 14px;
+            }
+
+            .home-btn {
+                top: 15px;
+                right: 15px;
+                padding: 8px 14px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-panel {
+                width: 85%;
+                padding: 70px 20px 20px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Home Button -->
+<a href="index.html" class="home-btn">🏠 Home</a>
+
+<!-- Navigation Toggle Button -->
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <span>Menu</span>
+</button>
+
+<!-- Navigation Overlay -->
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- Navigation Panel -->
+<nav class="nav-panel" id="navPanel">
+    <h3>Quick Navigation</h3>
+    <ul>
+        <li><a href="#concept">Core Concept</a></li>
+        <li><a href="#schematic">System Schematic</a></li>
+        <li><a href="#calculator">Material Calculator</a></li>
+        <li><a href="#construction">Construction Guide</a></li>
+        <li><a href="#warnings">Pro-Tips & Warnings</a></li>
+        <li><a href="#checklist">Launch Checklist</a></li>
+        <li><a href="#videos">Video Library</a></li>
+    </ul>
+</nav>
+
+<header>
+    <h1>Hydroponic Wick Systems</h1>
+    <p>The Passive, Power-Free Guide</p>
+    <a href="https://www.youtube.com/watch?v=LyATA1DcIfU" target="_blank" class="source-link">📺 Original Video (Hoocho's Update)</a>
+</header>
+
+<div class="container">
+
+    <!-- CONCEPT -->
+    <section id="concept">
+        <h2>The Core Concept</h2>
+        <p>A Wick System is a passive hydroponic setup where a nutrient solution is drawn from a reservoir up to the plant roots via capillary action through a porous material (rope, felt, or fabric). It requires <strong>zero electricity</strong> and <strong>zero moving parts</strong>.</p>
+
+        <div class="secret-sauce">
+            <h3>🧪 The "Secret Sauce": The Air Gap & Media Porosity</h3>
+            <p>The #1 reason beginners fail is root rot caused by anaerobic conditions. The most successful builds (like the "Hoocho Bucket" or "Rain Gutter" systems) differ from basic methods in one key way:</p>
+            <p><strong>They maintain a strict Air Gap between the water level and the main root mass.</strong></p>
+            <ul>
+                <li><strong>The Mechanism:</strong> The wick brings moisture <em>up</em>, but gravity pulls excess water <em>down</em>.</li>
+                <li><strong>The Result:</strong> The medium stays moist (like a wrung-out sponge), not soaking wet. This ensures roots get oxygen <em>and</em> water simultaneously.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SCHEMATIC -->
+    <section id="schematic">
+        <h2>System Schematic</h2>
+        <div class="schematic-container">
+            <img src="images/wick_schematic.png" alt="Wick System Schematic showing the bucket structure, false bottom, wicks, nutrient reservoir, growing media, and critical air gap" style="max-width: 100%; height: auto; border-radius: 8px;">
+        </div>
+    </section>
+
+    <!-- CALCULATOR -->
+    <section id="calculator">
+        <h2>🧮 Material & Nutrient Calculator</h2>
+        <div class="calculator-box">
+            <div class="calc-group">
+                <label for="unitSelect">System of Measurement</label>
+                <select id="unitSelect" onchange="updateLabels()">
+                    <option value="imperial">Imperial (Gallons/Inches)</option>
+                    <option value="metric">Metric (Litres/CM)</option>
+                </select>
+            </div>
+            <div class="calc-group">
+                <label for="containerSize" id="containerLabel">Container Volume (Gallons)</label>
+                <input type="number" id="containerSize" value="5" oninput="calculate()">
+            </div>
+
+            <div class="results">
+                <div class="result-row">
+                    <span>Coco Coir Needed (70%):</span>
+                    <span id="cocoResult">--</span>
+                </div>
+                <div class="result-row">
+                    <span>Perlite Needed (30%):</span>
+                    <span id="perliteResult">--</span>
+                </div>
+                <div class="result-row">
+                    <span>Dry Nutrient Base (Approx):</span>
+                    <span id="nutrientResult">--</span>
+                </div>
+                <div class="result-row">
+                    <span>Min Wick Length:</span>
+                    <span id="wickResult">--</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONSTRUCTION -->
+    <section id="construction">
+        <h2>Step-by-Step Construction</h2>
+
+        <h3>Phase 1: Materials Prep</h3>
+        <ul>
+            <li><strong>Container:</strong> Opaque bucket or tote (prevents algae). 5 Gallon buckets are standard.</li>
+            <li><strong>Wick Material:</strong> Thick nylon rope, microfibre cloth strips, or specialised felt. <em>Avoid cotton (rots).</em></li>
+            <li><strong>Media:</strong> 70% Coco Coir / 30% Perlite. This ratio provides ideal wicking height and aeration.</li>
+            <li><strong>Net Cup / False Bottom:</strong> A smaller container that fits inside or a mesh screen to separate soil from the water reservoir.</li>
+        </ul>
+
+        <h3>Phase 2: The Build</h3>
+        <ol>
+            <li><strong>Create the Reservoir:</strong> Determine your water line (usually bottom 3-4 inches of the container). Drill an overflow hole exactly at this line.</li>
+            <li><strong>Install the Platform:</strong> Place your net pot or false bottom plate just above the water line.</li>
+            <li><strong>Thread the Wicks:</strong> Cut wicks long enough to touch the bottom of the reservoir and extend halfway up into the growing media. Use 2-4 thick wicks for a 5-gallon bucket.</li>
+            <li><strong>The "Secret" Step:</strong> Ensure there is a 1-inch (2.5cm) gap between the maximum water line (overflow hole) and the bottom of your soil platform. This is the air gap.</li>
+        </ol>
+
+        <h3>Phase 3: Planting</h3>
+        <ol>
+            <li>Pre-moisten your Coco/Perlite mix with nutrient solution.</li>
+            <li>Fill the container, holding the wicks up so they run vertically through the soil.</li>
+            <li>Transplant your seedling. Top water <strong>once</strong> to establish the capillary connection.</li>
+        </ol>
+    </section>
+
+    <!-- WARNINGS -->
+    <section id="warnings">
+        <h2>⚠️ Pro-Tips & Warnings</h2>
+        <div class="warning-box">
+            <ul style="margin: 0; padding-left: 20px;">
+                <li><strong>The Salt Trap:</strong> Wicking systems accumulate nutrient salts at the top layer of the soil as water evaporates. <span style="text-decoration:underline;">Do not flush water from the top down</span> after the plant is established, or you will burn the roots with concentrated salts. If you must flush, flush heavily to wash it all out the overflow.</li>
+                <li><strong>Algae Enemy:</strong> Light + Nutrient Water = Algae. Ensure your reservoir is 100% light-proof. Paint the outside or wrap in foil if using recycled bottles.</li>
+                <li><strong>Mosquitoes:</strong> If your system is outdoors, cover the overflow hole with a small piece of mesh screen.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CHECKLIST -->
+    <section id="checklist">
+        <h2>✅ Final Launch Checklist</h2>
+        <ul class="checklist">
+            <li><label><input type="checkbox" onclick="toggleStrike(this)"> Reservoir is light-proof (painted or wrapped)</label></li>
+            <li><label><input type="checkbox" onclick="toggleStrike(this)"> Wicks are synthetic (Nylon/Microfibre) not Cotton</label></li>
+            <li><label><input type="checkbox" onclick="toggleStrike(this)"> Media is mixed (Coco/Perlite) for drainage</label></li>
+            <li><label><input type="checkbox" onclick="toggleStrike(this)"> Overflow hole drilled 1" below the soil platform</label></li>
+            <li><label><input type="checkbox" onclick="toggleStrike(this)"> Wicks extend well into the soil (not just at bottom)</label></li>
+            <li><label><input type="checkbox" onclick="toggleStrike(this)"> Initial top-watering completed</label></li>
+        </ul>
+    </section>
+
+    <!-- VIDEOS -->
+    <section id="videos">
+        <h2>📺 Video Reference Library</h2>
+        <div class="video-grid" id="videoGrid">
+            <!-- Populated via JS -->
+        </div>
+    </section>
+
+</div>
+
+<script>
+    // --- CALCULATOR LOGIC ---
+    function updateLabels() {
+        const unit = document.getElementById('unitSelect').value;
+        const label = document.getElementById('containerLabel');
+
+        if (unit === 'imperial') {
+            label.innerText = "Container Volume (Gallons)";
+        } else {
+            label.innerText = "Container Volume (Litres)";
+        }
+        calculate();
+    }
+
+    function calculate() {
+        const unit = document.getElementById('unitSelect').value;
+        const volume = parseFloat(document.getElementById('containerSize').value) || 0;
+
+        let litres = volume;
+        if (unit === 'imperial') {
+            litres = volume * 3.785; // Convert Gallons to Litres for calculation
+        }
+
+        // Ratios
+        // Media volume assumes reservoir takes up 20%, leaving 80% for media
+        const mediaVolumeL = litres * 0.8;
+
+        const cocoL = (mediaVolumeL * 0.7).toFixed(1);
+        const perliteL = (mediaVolumeL * 0.3).toFixed(1);
+
+        // Nutrients (General baseline: ~5g per gallon / ~1.3g per litre of dry fertiliser like Maxigro)
+        const nutrientsG = (litres * 1.3).toFixed(1);
+
+        // Wick Length (Heuristic: Height of container + 50%)
+        let wickLen;
+        if (unit === 'imperial') {
+            wickLen = "Min 12-15 inches";
+
+            document.getElementById('cocoResult').innerText = (cocoL / 3.785).toFixed(1) + " Gal";
+            document.getElementById('perliteResult').innerText = (perliteL / 3.785).toFixed(1) + " Gal";
+            document.getElementById('nutrientResult').innerText = nutrientsG + " grams (~" + (nutrientsG/5).toFixed(1) + " tsp)";
+
+        } else {
+            wickLen = "Min 30-40 cm";
+
+            document.getElementById('cocoResult').innerText = cocoL + " Litres";
+            document.getElementById('perliteResult').innerText = perliteL + " Litres";
+            document.getElementById('nutrientResult').innerText = nutrientsG + " grams";
+        }
+
+        document.getElementById('wickResult').innerText = wickLen;
+    }
+
+    // --- CHECKLIST LOGIC ---
+    function toggleStrike(checkbox) {
+        const li = checkbox.parentElement.parentElement;
+        if (checkbox.checked) {
+            li.classList.add('strikethrough');
+        } else {
+            li.classList.remove('strikethrough');
+        }
+    }
+
+    // --- VIDEO LIBRARY POPULATION ---
+    const videos = [
+        { id: 'lq4Sqb6-M3w', title: 'Hydroponics Wick System Explained' },
+        { id: 'wmUVWoUz_tw', title: 'Self-watering Wick System Comparison' },
+        { id: 'SlOb6PQXPTw', title: 'Start Hydroponic Gardening (Simple Kit)' },
+        { id: 'kdfrEJ62IQY', title: 'How to Build a Wick Hydroponic System' },
+        { id: 'LyATA1DcIfU', title: 'Float Box & Wick Wedge Update (Advanced)' },
+        { id: 'uY9DpjNZuNw', title: 'Simple Wicking System Build' },
+        { id: 'XGTJVV4XJO0', title: 'The BEST Self Watering Wicking Buckets' }
+    ];
+
+    const videoGrid = document.getElementById('videoGrid');
+
+    videos.forEach(vid => {
+        const card = document.createElement('a');
+        card.className = 'video-card';
+        card.href = `https://www.youtube.com/watch?v=${vid.id}`;
+        card.target = '_blank';
+
+        card.innerHTML = `
+            <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/${vid.id}/hqdefault.jpg')">
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="video-info">
+                <span class="video-title">${vid.title}</span>
+            </div>
+        `;
+        videoGrid.appendChild(card);
+    });
+
+    // Navigation Toggle Logic
+    const navToggle = document.getElementById('navToggle');
+    const navPanel = document.getElementById('navPanel');
+    const navOverlay = document.getElementById('navOverlay');
+
+    function openNav() {
+        navPanel.classList.add('active');
+        navOverlay.classList.add('active');
+        navToggle.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeNav() {
+        navPanel.classList.remove('active');
+        navOverlay.classList.remove('active');
+        navToggle.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    navToggle.addEventListener('click', () => {
+        if (navPanel.classList.contains('active')) {
+            closeNav();
+        } else {
+            openNav();
+        }
+    });
+
+    navOverlay.addEventListener('click', closeNav);
+
+    // Smooth scrolling
+    document.querySelectorAll('.nav-panel a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+
+            if (targetSection) {
+                closeNav();
+                setTimeout(() => {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 300);
+
+                document.querySelectorAll('.nav-panel a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            }
+        });
+    });
+
+    // Highlight active section on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-panel a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 100) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Close nav on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navPanel.classList.contains('active')) {
+            closeNav();
+        }
+    });
+
+    // Initialize Calculator
+    calculate();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DWC & Kratky Hydroponics Guide</title>
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <style>
+        :root {
+            --primary: #2f855a;
+            --primary-dark: #22543d;
+            --accent: #2b6cb0;
+            --bg: #f7fafc;
+            --card-bg: #ffffff;
+            --text: #2d3748;
+            --border: #e2e8f0;
+            --warning: #ed8936;
+            --danger: #e53e3e;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 { margin: 0; font-size: 2.5rem; letter-spacing: 1px; }
+        header p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
+
+        .source-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .source-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Sections */
+        section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        h2 { color: var(--primary-dark); border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-top: 0; }
+        h3 { color: var(--accent); margin-top: 25px; }
+
+        /* Secret Sauce Box */
+        .secret-sauce {
+            background: #ebf8ff;
+            border-left: 5px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .secret-sauce h3 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        /* Calculator */
+        .calculator-box {
+            background: #ebf8ff;
+            border: 2px solid var(--accent);
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .calc-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .input-group {
+            flex: 1;
+            min-width: 150px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+        }
+
+        input, select {
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .result-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            font-size: 1.1rem;
+        }
+
+        /* SVG Schematic */
+        .schematic-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            background: #f0fff4;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #c6f6d5;
+        }
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .bucket-outline { fill: none; stroke: var(--text); stroke-width: 3; }
+        .water-dwc { fill: var(--accent); opacity: 0.2; }
+        .water-kratky { fill: var(--primary); opacity: 0.2; }
+        .net-cup { fill: #4a5568; }
+        .hydroton { fill: #ed8936; }
+        .air-stone { fill: #718096; }
+        .bubbles { fill: var(--accent); animation: rise 2s infinite; }
+        .roots { fill: none; stroke: #f6e05e; stroke-width: 2; opacity: 0.8; }
+
+        @keyframes rise {
+            0% { transform: translateY(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-50px); opacity: 0; }
+        }
+
+        /* Warnings */
+        .warning-box {
+            background-color: #fffaf0;
+            border-left: 5px solid var(--warning);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .danger-box {
+            background-color: #fff5f5;
+            border-left: 5px solid var(--danger);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .checklist li:hover {
+            background-color: #f7fafc;
+        }
+
+        .checklist input[type="checkbox"] {
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .checked {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .video-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s;
+            text-decoration: none;
+        }
+
+        .video-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-thumb {
+            width: 100%;
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            background-color: #cbd5e0;
+            position: relative;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .video-info {
+            padding: 15px;
+        }
+
+        .video-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: var(--text);
+        }
+
+        .video-meta {
+            font-size: 0.85rem;
+            color: #718096;
+        }
+
+        /* SVG Styles */
+        text { font-family: sans-serif; }
+
+        /* Navigation Toggle Button */
+        .nav-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-toggle:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .nav-toggle .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .nav-toggle .hamburger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .nav-toggle.active .hamburger span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active .hamburger span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active .hamburger span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Navigation Overlay */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Navigation Panel */
+        .nav-panel {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 300px;
+            height: 100vh;
+            background: var(--card-bg);
+            box-shadow: none;
+            z-index: 1000;
+            padding: 80px 25px 25px 25px;
+            overflow-y: auto;
+            transition: left 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .nav-panel.active {
+            left: 0;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+        }
+
+        .nav-panel h3 {
+            margin: 0 0 20px 0;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+        }
+
+        .nav-panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-panel li {
+            margin: 0;
+        }
+
+        .nav-panel a {
+            color: var(--accent);
+            text-decoration: none;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-size: 1rem;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-panel a:hover {
+            background: var(--bg);
+            color: var(--primary);
+            border-left-color: var(--primary);
+        }
+
+        .nav-panel a.active {
+            background: var(--primary);
+            color: white;
+            border-left-color: var(--primary-dark);
+        }
+
+        /* Home Button */
+        .home-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .home-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Mobile optimisations */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                top: 15px;
+                left: 15px;
+                padding: 10px 14px;
+            }
+
+            .home-btn {
+                top: 15px;
+                right: 15px;
+                padding: 8px 14px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-panel {
+                width: 85%;
+                padding: 70px 20px 20px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Home Button -->
+<a href="index.html" class="home-btn">🏠 Home</a>
+
+<!-- Navigation Toggle Button -->
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <span>Menu</span>
+</button>
+
+<!-- Navigation Overlay -->
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- Navigation Panel -->
+<nav class="nav-panel" id="navPanel">
+    <h3>Quick Navigation</h3>
+    <ul>
+        <li><a href="#concept">Core Concept</a></li>
+        <li><a href="#schematic">System Schematic</a></li>
+        <li><a href="#calculator">Nutrient Calculator</a></li>
+        <li><a href="#workflow">The Workflow</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a></li>
+        <li><a href="#videos">Video Library</a></li>
+        <li><a href="#checklist">Maintenance Checklist</a></li>
+    </ul>
+</nav>
+
+<header>
+    <h1>DWC & Kratky Hydroponics</h1>
+    <p>Complete Grow Cycle: Setup, Maintenance & Troubleshooting</p>
+    <a href="https://www.youtube.com/watch?v=YwbY-z0zqLU" target="_blank" class="source-link">📺 Original Video Series</a>
+</header>
+
+<div class="container">
+
+    <!-- CONCEPT -->
+    <section id="concept">
+        <h2>🧪 The Core Concept</h2>
+        <p><strong>Deep Water Culture (DWC):</strong> Roots are submerged in a highly oxygenated nutrient solution 24/7. Air bubbles created by a pump prevent drowning and explode growth rates.</p>
+        <p><strong>Kratky Method:</strong> A passive, non-circulating system. As the plant drinks, the water level drops, creating an "air gap" where roots develop specialised structures to breathe oxygen from the humid air.</p>
+
+        <div class="secret-sauce">
+            <h3>🔥 The Secret Sauce: Root Zone Hygiene</h3>
+            <p>The difference between a massive harvest and a dead plant in these videos was <strong>Root Rot Management</strong>.</p>
+            <p>The creator struggled with pH swings caused by bacterial growth. The fix? <strong>Light-proofing the reservoir</strong> (using foil or black buckets) and using <strong>Enzymatic Cleaners (e.g., Cannazym/Hydroguard)</strong> to dissolve dead roots and prevent slime buildup.</p>
+        </div>
+    </section>
+
+    <!-- SCHEMATIC -->
+    <section id="schematic">
+        <h2>⚙️ System Schematic</h2>
+        <div class="schematic-container">
+            <svg viewBox="0 0 500 300">
+                <!-- Floor -->
+                <line x1="0" y1="280" x2="500" y2="280" stroke="#2d3748" stroke-width="2" />
+
+                <!-- DWC Bucket (Left) -->
+                <g transform="translate(50, 50)">
+                    <text x="75" y="-20" text-anchor="middle" font-weight="bold" fill="#22543d">DWC (Active)</text>
+                    <!-- Bucket -->
+                    <path d="M0,0 L20,200 L130,200 L150,0" class="bucket-outline" />
+                    <!-- Water -->
+                    <path d="M5,10 L18,190 L132,190 L145,10 Z" class="water-dwc" />
+                    <!-- Net Cup -->
+                    <rect x="50" y="0" width="50" height="50" class="net-cup" rx="5" />
+                    <!-- Hydroton -->
+                    <circle cx="60" cy="15" r="5" class="hydroton" />
+                    <circle cx="75" cy="15" r="5" class="hydroton" />
+                    <circle cx="90" cy="15" r="5" class="hydroton" />
+                    <circle cx="65" cy="30" r="5" class="hydroton" />
+                    <circle cx="85" cy="30" r="5" class="hydroton" />
+                    <!-- Plant -->
+                    <rect x="73" y="-40" width="4" height="40" fill="#2f855a" />
+                    <circle cx="75" cy="-50" r="15" fill="#48bb78" opacity="0.8" />
+                    <!-- Roots -->
+                    <path d="M75,50 C75,100 40,120 40,180" class="roots" />
+                    <path d="M75,50 C75,100 110,120 110,180" class="roots" />
+                    <path d="M75,50 C75,120 75,160 75,185" class="roots" />
+                    <!-- Air Stone & Bubbles -->
+                    <rect x="60" y="180" width="30" height="10" class="air-stone" />
+                    <circle cx="65" cy="170" r="2" class="bubbles" style="animation-delay: 0s" />
+                    <circle cx="85" cy="160" r="3" class="bubbles" style="animation-delay: 0.5s" />
+                    <circle cx="75" cy="140" r="2" class="bubbles" style="animation-delay: 1s" />
+                    <circle cx="50" cy="120" r="2" class="bubbles" style="animation-delay: 1.5s" />
+                    <!-- Tubing -->
+                    <path d="M60,185 C20,185 20,0 20,-20" fill="none" stroke="#718096" stroke-width="2" stroke-dasharray="4" />
+                </g>
+
+                <!-- Kratky Bucket (Right) -->
+                <g transform="translate(300, 50)">
+                    <text x="75" y="-20" text-anchor="middle" font-weight="bold" fill="#2d3748">Kratky (Passive)</text>
+                    <!-- Bucket -->
+                    <path d="M0,0 L20,200 L130,200 L150,0" class="bucket-outline" />
+                    <!-- Water (Lower Level) -->
+                    <path d="M12,100 L18,190 L132,190 L138,100 Z" class="water-kratky" />
+                    <!-- Net Cup -->
+                    <rect x="50" y="0" width="50" height="50" class="net-cup" rx="5" />
+                     <!-- Hydroton -->
+                    <circle cx="60" cy="15" r="5" class="hydroton" />
+                    <circle cx="75" cy="15" r="5" class="hydroton" />
+                    <circle cx="90" cy="15" r="5" class="hydroton" />
+                     <!-- Plant -->
+                    <rect x="73" y="-40" width="4" height="40" fill="#2f855a" />
+                    <circle cx="75" cy="-50" r="15" fill="#48bb78" opacity="0.8" />
+                    <!-- Roots -->
+                    <path d="M75,50 C75,80 40,80 40,180" class="roots" />
+                    <path d="M75,50 C75,80 110,80 110,180" class="roots" />
+                    <path d="M75,50 C75,80 75,100 75,185" class="roots" />
+                    <!-- Air Gap Label -->
+                    <text x="145" y="70" font-size="12" fill="#e53e3e">Air Gap</text>
+                    <line x1="140" y1="75" x2="100" y2="75" stroke="#e53e3e" stroke-width="1" />
+                </g>
+            </svg>
+        </div>
+    </section>
+
+    <!-- CALCULATOR -->
+    <section id="calculator">
+        <h2>🧮 Reservoir Nutrient Calculator</h2>
+        <p>Calculate nutrient strength (PPM) targets based on growth stage.</p>
+
+        <div class="calculator-box">
+            <div class="calc-row">
+                <div class="input-group">
+                    <label>Unit System</label>
+                    <select id="unitToggle">
+                        <option value="imperial">Imperial (Gallons)</option>
+                        <option value="metric">Metric (Litres)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Reservoir Size</label>
+                    <input type="number" id="resSize" value="5">
+                </div>
+                <div class="input-group">
+                    <label>Growth Stage</label>
+                    <select id="stageSelect">
+                        <option value="seedling">Seedling/Early Veg (200-300 PPM)</option>
+                        <option value="midVeg">Mid Veg (400-600 PPM)</option>
+                        <option value="flower">Flowering (800-1100 PPM)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="result-box" id="calcResult">
+                Target Nutrients: Enter values above
+            </div>
+            <p style="font-size: 0.8rem; color: #718096; text-align: center; margin-top: 0.5rem;">
+                *Note: Always start with 50% of manufacturer recommendations and ramp up.
+            </p>
+        </div>
+    </section>
+
+    <!-- WORKFLOW -->
+    <section id="workflow">
+        <h2>📝 The Workflow</h2>
+
+        <h3>Phase 1: Setup</h3>
+        <ul>
+            <li><strong>Buckets:</strong> 5-Gallon black buckets (to block light).</li>
+            <li><strong>Lids:</strong> Heavy-duty net pot lids (6-inch standard).</li>
+            <li><strong>Medium:</strong> Hydroton (Clay Pebbles). <em>Critical: Rinse these until water runs clear or dust will spike your pH.</em></li>
+            <li><strong>Aeration (DWC Only):</strong> Air pump outside the tent, airline tubing through a hole in the rim, air stone at the bottom.</li>
+        </ul>
+
+        <h3>Phase 2: The Cycle</h3>
+        <ul>
+            <li><strong>Germination:</strong> Start in rockwool or rapid rooters. Keep humid.</li>
+            <li><strong>Transplant:</strong> Move to bucket when roots pop out. <strong>Water Level:</strong> Water must touch the bottom of the net pot until roots drop.</li>
+            <li><strong>Vegetative Stage:</strong> As roots descend, lower water level (1-2 inches below net cup). Ramp PPM to 400-600.</li>
+            <li><strong>Flowering:</strong> Switch to Bloom nutrients. PPM 800-1000. Watch for pH swings (plants drink more water than nutrients = pH changes).</li>
+        </ul>
+    </section>
+
+    <!-- TROUBLESHOOTING -->
+    <section id="troubleshooting">
+        <h2>⚠️ Critical Failures & Fixes</h2>
+
+        <div class="warning-box">
+            <strong>The "pH Drift" Mystery:</strong>
+            In the videos, pH kept fluctuating. If pH drops rapidly, it's usually <strong>Root Rot</strong> (acidic byproducts from bacteria). If pH rises rapidly, the plant is eating nutrients faster than water (add more nutrients).
+        </div>
+
+        <div class="danger-box">
+            <strong>Light Leaks = Death:</strong>
+            Algae needs light and water. In DWC, algae steals oxygen and chokes roots.
+            <br><strong>Fix:</strong> Tape over any translucent tubing, use black buckets, and cover clay pebbles with a paper plate or neoprene collar.
+        </div>
+
+        <div class="warning-box">
+            <strong>Temperature Control:</strong>
+            Water over 75°F (24°C) cannot hold enough dissolved oxygen, leading to rot. Keep reservoirs cool (65°F-68°F is ideal).
+        </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section id="videos">
+        <h2>📺 Video Reference Library</h2>
+        <p>Direct links to the original tutorials used to compile this manual.</p>
+
+        <div class="video-grid">
+            <!-- Video 1 -->
+            <a href="https://www.youtube.com/watch?v=YwbY-z0zqLU" target="_blank" class="video-card">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/YwbY-z0zqLU/hqdefault.jpg')">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <span class="video-title">DWC & Kratky Setup Guide</span>
+                    <span class="video-meta">The initial build & materials.</span>
+                </div>
+            </a>
+
+            <!-- Video 2 -->
+            <a href="https://www.youtube.com/watch?v=SNsLDuAOIpc" target="_blank" class="video-card">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/SNsLDuAOIpc/hqdefault.jpg')">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <span class="video-title">Germination & Week 1 Veg</span>
+                    <span class="video-meta">Starting strong with healthy roots.</span>
+                </div>
+            </a>
+
+            <!-- Video 3 -->
+            <a href="https://www.youtube.com/watch?v=z9ja28GFQO4" target="_blank" class="video-card">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/z9ja28GFQO4/hqdefault.jpg')">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <span class="video-title">Root Rot: The Nightmare Scenario</span>
+                    <span class="video-meta">What happens when light hits the water.</span>
+                </div>
+            </a>
+
+            <!-- Video 4 -->
+            <a href="https://www.youtube.com/watch?v=XNXBL47YNxg" target="_blank" class="video-card">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/XNXBL47YNxg/hqdefault.jpg')">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <span class="video-title">Troubleshooting pH Balance</span>
+                    <span class="video-meta">Why pH drifts and how to stabilise it.</span>
+                </div>
+            </a>
+
+            <!-- Video 5 -->
+            <a href="https://www.youtube.com/watch?v=r0lYH83yzOM" target="_blank" class="video-card">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/r0lYH83yzOM/hqdefault.jpg')">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <span class="video-title">Week 1 of Flower</span>
+                    <span class="video-meta">Transitioning nutrients and lighting.</span>
+                </div>
+            </a>
+
+            <!-- Video 6 -->
+            <a href="https://www.youtube.com/watch?v=e4AO4rtAIso" target="_blank" class="video-card">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/e4AO4rtAIso/hqdefault.jpg')">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <span class="video-title">DWC vs Kratky: The Results</span>
+                    <span class="video-meta">Side-by-side growth comparison.</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- CHECKLIST -->
+    <section id="checklist">
+        <h2>✅ Weekly Maintenance Checklist</h2>
+        <ul class="checklist">
+            <li><label><input type="checkbox"> Check pH (Target: 5.5 - 6.0)</label></li>
+            <li><label><input type="checkbox"> Check PPM/EC (Adjust based on stage)</label></li>
+            <li><label><input type="checkbox"> Check Water Temp (Below 72°F)</label></li>
+            <li><label><input type="checkbox"> Inspect Roots (Should be white/cream, not brown/slime)</label></li>
+            <li><label><input type="checkbox"> Check Air Stone (Ensure strong bubbles)</label></li>
+            <li><label><input type="checkbox"> Top off water (pH balanced plain water)</label></li>
+        </ul>
+    </section>
+
+</div>
+
+<script>
+    // Calculator Logic
+    const unitToggle = document.getElementById('unitToggle');
+    const resSize = document.getElementById('resSize');
+    const stageSelect = document.getElementById('stageSelect');
+    const calcResult = document.getElementById('calcResult');
+
+    function calculate() {
+        const unit = unitToggle.value;
+        let volume = parseFloat(resSize.value);
+        const stage = stageSelect.value;
+
+        if (isNaN(volume)) return;
+
+        // Target PPM ranges
+        const targets = {
+            seedling: "200 - 300",
+            midVeg: "400 - 600",
+            flower: "800 - 1100"
+        };
+
+        // H2O2 Dosing (Standard 3% Solution prevention dose)
+        // 2-3ml per gallon / ~0.5-0.8ml per litre
+        let h2o2 = 0;
+        let unitText = "";
+
+        if (unit === 'imperial') {
+            h2o2 = (volume * 2).toFixed(1) + " - " + (volume * 3).toFixed(1) + " ml";
+            unitText = "gallons";
+        } else {
+            h2o2 = (volume * 0.5).toFixed(1) + " - " + (volume * 0.8).toFixed(1) + " ml";
+            unitText = "litres";
+        }
+
+        calcResult.innerHTML = `
+            Target PPM: ${targets[stage]}<br>
+            <small> Preventive H₂O₂ (3%) dose: ${h2o2}</small>
+        `;
+    }
+
+    // Event Listeners
+    unitToggle.addEventListener('change', () => {
+        // Auto convert value when switching units for better UX
+        if(unitToggle.value === 'metric') {
+            resSize.value = (resSize.value * 3.78).toFixed(1);
+        } else {
+            resSize.value = (resSize.value / 3.78).toFixed(1);
+        }
+        calculate();
+    });
+    resSize.addEventListener('input', calculate);
+    stageSelect.addEventListener('change', calculate);
+
+    // Checklist Logic
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            if(this.checked) {
+                this.parentElement.classList.add('checked');
+            } else {
+                this.parentElement.classList.remove('checked');
+            }
+        });
+    });
+
+    // Navigation Toggle Logic
+    const navToggle = document.getElementById('navToggle');
+    const navPanel = document.getElementById('navPanel');
+    const navOverlay = document.getElementById('navOverlay');
+
+    function openNav() {
+        navPanel.classList.add('active');
+        navOverlay.classList.add('active');
+        navToggle.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeNav() {
+        navPanel.classList.remove('active');
+        navOverlay.classList.remove('active');
+        navToggle.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    navToggle.addEventListener('click', () => {
+        if (navPanel.classList.contains('active')) {
+            closeNav();
+        } else {
+            openNav();
+        }
+    });
+
+    navOverlay.addEventListener('click', closeNav);
+
+    // Smooth scrolling
+    document.querySelectorAll('.nav-panel a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+
+            if (targetSection) {
+                closeNav();
+                setTimeout(() => {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 300);
+
+                document.querySelectorAll('.nav-panel a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            }
+        });
+    });
+
+    // Highlight active section on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-panel a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 100) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Close nav on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navPanel.classList.contains('active')) {
+            closeNav();
+        }
+    });
+
+    // Init
+    calculate();
+</script>
+</body>
+</html>

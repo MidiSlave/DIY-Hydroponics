@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydroponics Knowledge Base</title>
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <style>
+        :root {
+            --primary: #2f855a;
+            --primary-dark: #22543d;
+            --accent: #2b6cb0;
+            --bg: #f7fafc;
+            --card-bg: #ffffff;
+            --text: #2d3748;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Hero Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 80px 20px 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: -50px auto 50px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Category Section */
+        .category-section {
+            margin-bottom: 50px;
+        }
+
+        .category-header {
+            background: var(--card-bg);
+            padding: 20px 30px;
+            border-radius: 12px 12px 0 0;
+            border: 1px solid var(--border);
+            border-bottom: none;
+        }
+
+        .category-header h2 {
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-header p {
+            margin: 10px 0 0 0;
+            color: #718096;
+            font-size: 1rem;
+        }
+
+        /* Guide Cards Grid */
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 0 0 12px 12px;
+            border: 1px solid var(--border);
+        }
+
+        .guide-card {
+            background: linear-gradient(to bottom, #f7fafc, #ffffff);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .guide-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(47, 133, 90, 0.15);
+            border-color: var(--primary);
+        }
+
+        .guide-card .icon {
+            font-size: 3rem;
+            line-height: 1;
+        }
+
+        .guide-card h3 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .guide-card p {
+            color: #718096;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        .guide-card .meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            color: #a0aec0;
+        }
+
+        .guide-card .meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .badge.passive {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .badge.active {
+            background: #bee3f8;
+            color: #2c5282;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            border-top: 1px solid var(--border);
+            padding: 30px 20px;
+            text-align: center;
+            color: #718096;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1.1rem;
+            }
+
+            .guide-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-header h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🌱 Hydroponics Knowledge Base</h1>
+    <p>Comprehensive guides for passive and active hydroponic systems</p>
+</header>
+
+<div class="container">
+
+    <!-- Passive Systems Section -->
+    <div class="category-section">
+        <div class="category-header">
+            <h2>🪴 Passive Systems</h2>
+            <p>No pumps, no electricity — set it and forget it</p>
+        </div>
+        <div class="guide-grid">
+
+            <!-- Kratky Guide -->
+            <a href="complete_kratky_guide.html" class="guide-card">
+                <div class="icon">🥬</div>
+                <h3>The Complete Kratky Guide</h3>
+                <p>The classic passive hydroponic method. Perfect for lettuce, herbs, and leafy greens. Featuring nutrient calculator, pH balancing guide, and outdoor setup instructions.</p>
+                <div class="meta">
+                    <span class="badge passive">Passive</span>
+                    <span>⏱️ No Maintenance</span>
+                    <span>💧 5-20L</span>
+                </div>
+            </a>
+
+            <!-- Power Tower -->
+            <a href="passive_power_tower.html" class="guide-card">
+                <div class="icon">🗼</div>
+                <h3>The Passive Power Tower</h3>
+                <p>Vertical Kratky system using 5-gallon buckets. Maximise space whilst maintaining the passive approach. Includes fabrication guide and nutrient calculator.</p>
+                <div class="meta">
+                    <span class="badge passive">Passive</span>
+                    <span>⏱️ Minimal Touch</span>
+                    <span>📐 Vertical</span>
+                </div>
+            </a>
+
+            <!-- Wick System -->
+            <a href="wick.html" class="guide-card">
+                <div class="icon">💧</div>
+                <h3>Wick System</h3>
+                <p>The simplest passive system using capillary action. Zero electricity, zero moving parts. Features material calculator, SVG schematic, and the critical air gap technique.</p>
+                <div class="meta">
+                    <span class="badge passive">Passive</span>
+                    <span>⚡ Zero Power</span>
+                    <span>🔰 Beginner</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- Active Systems Section -->
+    <div class="category-section">
+        <div class="category-header">
+            <h2>⚡ Active Systems</h2>
+            <p>Recirculating systems for larger plants and higher yields</p>
+        </div>
+        <div class="guide-grid">
+
+            <!-- DWC -->
+            <a href="dwc.html" class="guide-card">
+                <div class="icon">💧</div>
+                <h3>Deep Water Culture (DWC)</h3>
+                <p>Highly oxygenated nutrient solution for explosive growth. Complete grow cycle guide with troubleshooting for root rot, pH drift, and temperature control.</p>
+                <div class="meta">
+                    <span class="badge active">Active</span>
+                    <span>🚀 Fast Growth</span>
+                    <span>🔬 Advanced</span>
+                </div>
+            </a>
+
+            <!-- NFT -->
+            <a href="nft.html" class="guide-card">
+                <div class="icon">💦</div>
+                <h3>Nutrient Film Technique (NFT)</h3>
+                <p>Thin film of nutrient solution flowing over roots for commercial-grade production. Includes build calculator, system anatomy diagram, and critical failure prevention.</p>
+                <div class="meta">
+                    <span class="badge active">Active</span>
+                    <span>🏭 Commercial</span>
+                    <span>⚡ 24/7 Flow</span>
+                </div>
+            </a>
+
+            <!-- Dutch Bucket -->
+            <a href="dutch_bucket_guide.html" class="guide-card">
+                <div class="icon">🍅</div>
+                <h3>Dutch Bucket Guide</h3>
+                <p>DIY Bato Bucket system for tomatoes, peppers, and cucumbers. Features the paint strainer bag trick and siphon elbow design.</p>
+                <div class="meta">
+                    <span class="badge active">Active</span>
+                    <span>💪 High Yield</span>
+                    <span>🔄 Recirculating</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p><strong>Hydroponics Knowledge Base</strong></p>
+    <p>Aggregated from the community's best growers</p>
+    <p style="margin-top: 15px; font-size: 0.85rem;">All guides feature interactive calculators, visualisations, and step-by-step instructions</p>
+</footer>
+
+</body>
+</html>

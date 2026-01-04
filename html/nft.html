@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFT Hydroponics Guide</title>
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <style>
+        :root {
+            --primary: #2f855a;
+            --primary-dark: #22543d;
+            --accent: #2b6cb0;
+            --bg: #f7fafc;
+            --card-bg: #ffffff;
+            --text: #2d3748;
+            --border: #e2e8f0;
+            --warning: #ed8936;
+            --danger: #e53e3e;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 { margin: 0; font-size: 2.5rem; letter-spacing: 1px; }
+        header p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
+
+        .source-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .source-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Sections */
+        section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        h2 { color: var(--primary-dark); border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-top: 0; }
+        h3 { color: var(--accent); margin-top: 25px; }
+
+        /* Secret Sauce */
+        .secret-sauce {
+            background: #ebf8ff;
+            border-left: 5px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .secret-badge {
+            background-color: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        /* Schematic */
+        .schematic-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            background: #f0fff4;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #c6f6d5;
+        }
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Calculator */
+        .calculator-box {
+            background: #ebf8ff;
+            border: 2px solid var(--accent);
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .calc-group {
+            margin-bottom: 1rem;
+        }
+
+        .calc-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+        }
+
+        .calc-group input, .calc-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .calc-result {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-weight: bold;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .calc-result div {
+            margin: 8px 0;
+        }
+
+        /* Warnings */
+        .warning-box {
+            background-color: #fffaf0;
+            border-left: 5px solid var(--warning);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .danger-box {
+            background-color: #fff5f5;
+            border-left: 5px solid var(--danger);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .checklist li:hover {
+            background-color: #f7fafc;
+        }
+
+        .checklist input[type="checkbox"] {
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .video-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s;
+            text-decoration: none;
+        }
+
+        .video-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-thumb {
+            width: 100%;
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            background-color: #cbd5e0;
+            position: relative;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .video-info {
+            padding: 15px;
+        }
+
+        .video-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: var(--text);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-clamp: 2;
+            overflow: hidden;
+        }
+
+        /* SVG Styles */
+        text { font-family: sans-serif; }
+
+        /* Navigation Toggle Button */
+        .nav-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-toggle:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .nav-toggle .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .nav-toggle .hamburger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .nav-toggle.active .hamburger span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active .hamburger span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active .hamburger span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Navigation Overlay */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Navigation Panel */
+        .nav-panel {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 300px;
+            height: 100vh;
+            background: var(--card-bg);
+            box-shadow: none;
+            z-index: 1000;
+            padding: 80px 25px 25px 25px;
+            overflow-y: auto;
+            transition: left 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .nav-panel.active {
+            left: 0;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+        }
+
+        .nav-panel h3 {
+            margin: 0 0 20px 0;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+        }
+
+        .nav-panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-panel li {
+            margin: 0;
+        }
+
+        .nav-panel a {
+            color: var(--accent);
+            text-decoration: none;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-size: 1rem;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-panel a:hover {
+            background: var(--bg);
+            color: var(--primary);
+            border-left-color: var(--primary);
+        }
+
+        .nav-panel a.active {
+            background: var(--primary);
+            color: white;
+            border-left-color: var(--primary-dark);
+        }
+
+        /* Home Button */
+        .home-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .home-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Mobile optimisations */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                top: 15px;
+                left: 15px;
+                padding: 10px 14px;
+            }
+
+            .home-btn {
+                top: 15px;
+                right: 15px;
+                padding: 8px 14px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-panel {
+                width: 85%;
+                padding: 70px 20px 20px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Home Button -->
+<a href="index.html" class="home-btn">🏠 Home</a>
+
+<!-- Navigation Toggle Button -->
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <span>Menu</span>
+</button>
+
+<!-- Navigation Overlay -->
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- Navigation Panel -->
+<nav class="nav-panel" id="navPanel">
+    <h3>Quick Navigation</h3>
+    <ul>
+        <li><a href="#concept">Core Concept</a></li>
+        <li><a href="#schematic">System Anatomy</a></li>
+        <li><a href="#calculator">Build Calculator</a></li>
+        <li><a href="#build">Step-by-Step Build</a></li>
+        <li><a href="#warnings">Pro Tips & Warnings</a></li>
+        <li><a href="#checklist">Pre-Launch Checklist</a></li>
+        <li><a href="#videos">Video Library</a></li>
+    </ul>
+</nav>
+
+<header>
+    <h1>NFT Hydroponics Guide</h1>
+    <p>The definitive guide to Nutrient Film Technique</p>
+    <a href="https://www.youtube.com/watch?v=IOzJllpbs1Y" target="_blank" class="source-link">📺 Original Video (Hoocho)</a>
+</header>
+
+<div class="container">
+
+    <!-- CONCEPT -->
+    <section id="concept">
+        <h2>The Core Concept <span class="secret-badge">Secret Sauce</span></h2>
+        <div class="secret-sauce">
+            <p><strong>The Mistake:</strong> Most DIY "NFT" systems are actually accidental Deep Water Culture systems with low oxygen. People use round PVC pipes with high water levels, drowning the roots.</p>
+            <p><strong>The Solution:</strong> True NFT relies on a <strong>thin film</strong> of nutrient solution (1-2mm deep) constantly flowing over the roots. The roots must sit on a flat surface.</p>
+            <ul>
+                <li><strong>Flat Bottoms:</strong> Use Vinyl Downspouts or flat-base channels instead of round PVC to ensure a thin, even film.</li>
+                <li><strong>Oxygenation:</strong> 60%+ of the root mass should be in the air, not the water. This provides the explosive growth NFT is famous for.</li>
+                <li><strong>Slope:</strong> Maintain a slope of at least <strong>1:30 to 1:40 (approx 3%)</strong> to ensure flow and prevent pooling.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SCHEMATIC -->
+    <section id="schematic">
+        <h2>System Anatomy</h2>
+        <div class="schematic-container">
+            <img src="images/nft.png" alt="NFT system schematic showing reservoir with pump, feed line to sloped channel with thin nutrient film, plants with roots, and gravity return line" style="max-width: 100%; height: auto; border-radius: 8px;">
+        </div>
+        <p style="text-align: center; font-size: 0.9rem; color: #718096; margin-top: 10px;">Figure 1: Side profile showing the 3% slope and gravity return system.</p>
+    </section>
+
+    <!-- CALCULATOR -->
+    <section id="calculator">
+        <h2>🧮 Build Calculator</h2>
+        <div class="calculator-box">
+            <div class="calc-group">
+                <label for="unitToggle">System Units</label>
+                <select id="unitToggle">
+                    <option value="metric">Metric (Metres/Litres)</option>
+                    <option value="imperial">Imperial (Feet/Gallons)</option>
+                </select>
+            </div>
+
+            <div class="calc-group">
+                <label for="channelLen">Channel Length per Tube</label>
+                <input type="number" id="channelLen" value="2">
+            </div>
+
+            <div class="calc-group">
+                <label for="numChannels">Number of Channels</label>
+                <input type="number" id="numChannels" value="4">
+            </div>
+
+            <div class="calc-group">
+                <label for="flowRateInput">Target Flow Rate (per channel)</label>
+                <input type="number" id="flowRateInput" value="1" step="0.1">
+                <small id="flowLabel" style="color:#718096">Litres per Minute</small>
+            </div>
+
+            <div id="results" class="calc-result">
+                Select units to see requirements.
+            </div>
+        </div>
+    </section>
+
+    <!-- BUILD GUIDE -->
+    <section id="build">
+        <h2>🛠️ Step-by-Step Build</h2>
+        <ol style="padding-left: 20px;">
+            <li>
+                <strong>Preparation:</strong>
+                <ul>
+                    <li>Select <strong>Vinyl Downspouts</strong> (flat bottom) or 100mm PVC (if using square inserts).</li>
+                    <li>Build a frame (wood or metal) ensuring a <strong>1:30 or 1:40 drop</strong> (approx 3cm drop per 1m length).</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Channel Fabrication:</strong>
+                <ul>
+                    <li>Cut channels to length.</li>
+                    <li>Use a heat gun to mould end-caps on vinyl, or glue PVC end caps.</li>
+                    <li>Drill holes for net cups (usually 2-inch/50mm hole saw) spaced 20cm apart.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Plumbing:</strong>
+                <ul>
+                    <li>Drill inlet holes at the high end.</li>
+                    <li>Install a drain manifold at the low end returning to the reservoir.</li>
+                    <li>Connect a pump (magnetic drive preferred) to the inlets using black poly pipe.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Operation:</strong>
+                <ul>
+                    <li>Fill reservoir (keep temp 20-25°C).</li>
+                    <li>Add nutrients (EC 1.2 - 2.0 depending on crop).</li>
+                    <li>Adjust pH to 5.8 - 6.2.</li>
+                    <li><strong>Run pump 24/7.</strong> NFT roots dry out in minutes if the pump stops.</li>
+                </ul>
+            </li>
+        </ol>
+    </section>
+
+    <!-- WARNINGS -->
+    <section id="warnings">
+        <h2>⚠️ Pro Tips & Warnings</h2>
+        <div class="danger-box">
+            <strong>CRITICAL FAILURE POINT:</strong> Never let the pump stop. NFT systems have no water buffer. If power fails, plants die in &lt;1 hour.
+        </div>
+        <div class="warning-box" style="margin-top: 10px;">
+            <strong>Light Leaks:</strong> Ensure your reservoir and channels are 100% light-proof. Light + Nutrients = Algae, which steals oxygen and clogs the pump.
+        </div>
+        <div class="warning-box">
+            <strong>Pump Sizing:</strong> Aim for 1-2 Litres (0.25 - 0.5 Gal) per minute <em>per channel</em>. Don't undersize the pump head height.
+        </div>
+    </section>
+
+    <!-- CHECKLIST -->
+    <section id="checklist">
+        <h2>✅ Pre-Launch Checklist</h2>
+        <ul class="checklist">
+            <li><label><input type="checkbox"> Channels cleaned and light-proofed</label></li>
+            <li><label><input type="checkbox"> Slope verified (water runs fast, doesn't pool)</label></li>
+            <li><label><input type="checkbox"> Reservoir protected from direct sun (heat)</label></li>
+            <li><label><input type="checkbox"> Pump tested for correct head height</label></li>
+            <li><label><input type="checkbox"> Return line creates a waterfall (adds oxygen)</label></li>
+            <li><label><input type="checkbox"> pH balanced to ~6.0</label></li>
+        </ul>
+    </section>
+
+    <!-- VIDEOS -->
+    <section id="videos">
+        <h2>📺 Video Reference Library</h2>
+        <div class="video-grid">
+            <!-- Video 1 -->
+            <a href="https://www.youtube.com/watch?v=cAFvMbVeUcg" target="_blank" class="video-card">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/cAFvMbVeUcg/hqdefault.jpg')">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Building a Hydroponic NFT System from eBay</div>
+                </div>
+            </a>
+            <!-- Video 2 -->
+            <a href="https://www.youtube.com/watch?v=IOzJllpbs1Y" target="_blank" class="video-card">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/IOzJllpbs1Y/hqdefault.jpg')">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Nutrient Film Technique: You're Doing it Wrong!</div>
+                </div>
+            </a>
+            <!-- Video 3 -->
+            <a href="https://www.youtube.com/watch?v=MMQGCN2jNJY" target="_blank" class="video-card">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/MMQGCN2jNJY/hqdefault.jpg')">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Operation and Maintenance Guide</div>
+                </div>
+            </a>
+            <!-- Video 4 -->
+            <a href="https://www.youtube.com/watch?v=97ncMng-M3s" target="_blank" class="video-card">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/97ncMng-M3s/hqdefault.jpg')">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Basic NFT Hydroponic Build (Vinyl)</div>
+                </div>
+            </a>
+            <!-- Video 5 -->
+            <a href="https://www.youtube.com/watch?v=VCsfxEChLD0" target="_blank" class="video-card">
+                <div class="video-thumb" style="background-image: url('https://img.youtube.com/vi/VCsfxEChLD0/hqdefault.jpg')">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Nick Williams - Master Gardener NFT</div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    const unitToggle = document.getElementById('unitToggle');
+    const channelLen = document.getElementById('channelLen');
+    const numChannels = document.getElementById('numChannels');
+    const flowRateInput = document.getElementById('flowRateInput');
+    const flowLabel = document.getElementById('flowLabel');
+    const results = document.getElementById('results');
+
+    function calculate() {
+        const isMetric = unitToggle.value === 'metric';
+        const length = parseFloat(channelLen.value) || 0;
+        const channels = parseFloat(numChannels.value) || 0;
+        const flowRate = parseFloat(flowRateInput.value) || 0;
+
+        let totalLengthMetres = 0;
+        let totalFlowLPH = 0;
+        let reservoirSize = 0;
+        let slope = 0;
+
+        // Updates Labels
+        if(isMetric) {
+            flowLabel.innerText = "Litres per Minute";
+        } else {
+            flowLabel.innerText = "Gallons per Minute";
+        }
+
+        if (isMetric) {
+            totalLengthMetres = length * channels;
+            // Rule of thumb: 1L per minute per channel
+            totalFlowLPH = (flowRate * 60) * channels;
+            // Reservoir: roughly 5-10L per metre of channel length
+            reservoirSize = Math.ceil(totalLengthMetres * 8);
+            slope = (length * 100) * 0.03; // 3% slope in cm
+        } else {
+            // Imperial Calc
+            const lengthMetres = length * 0.3048;
+            totalLengthMetres = lengthMetres * channels;
+
+            // Flow rate input is GPM. Convert to LPH for pump sizing roughly
+            const flowGPH = (flowRate * 60) * channels;
+
+            // Res size in gallons (approx 2 gal per 3ft)
+            reservoirSize = Math.ceil(length * channels * 0.8);
+
+            slope = (length * 12) * 0.03; // 3% slope in inches
+        }
+
+        // Generate Output HTML
+        let html = ``;
+        if (isMetric) {
+            html += `<div><strong>Total System Length:</strong> ${totalLengthMetres.toFixed(1)} metres</div>`;
+            html += `<div><strong>Min Pump Capacity:</strong> ${totalFlowLPH.toFixed(0)} L/hr (Head height dependant)</div>`;
+            html += `<div><strong>Recommended Reservoir:</strong> ${reservoirSize} Litres</div>`;
+            html += `<div><strong>Required Drop (Slope):</strong> ${slope.toFixed(1)} cm drop per channel</div>`;
+        } else {
+            html += `<div><strong>Total System Length:</strong> ${(length*channels).toFixed(1)} feet</div>`;
+            html += `<div><strong>Min Pump Capacity:</strong> ${flowGPH.toFixed(0)} GPH</div>`;
+            html += `<div><strong>Recommended Reservoir:</strong> ${reservoirSize} Gallons</div>`;
+            html += `<div><strong>Required Drop (Slope):</strong> ${slope.toFixed(1)} inches drop per channel</div>`;
+        }
+
+        results.innerHTML = html;
+    }
+
+    // Event Listeners
+    unitToggle.addEventListener('change', calculate);
+    channelLen.addEventListener('input', calculate);
+    numChannels.addEventListener('input', calculate);
+    flowRateInput.addEventListener('input', calculate);
+
+    // Navigation Toggle Logic
+    const navToggle = document.getElementById('navToggle');
+    const navPanel = document.getElementById('navPanel');
+    const navOverlay = document.getElementById('navOverlay');
+
+    function openNav() {
+        navPanel.classList.add('active');
+        navOverlay.classList.add('active');
+        navToggle.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeNav() {
+        navPanel.classList.remove('active');
+        navOverlay.classList.remove('active');
+        navToggle.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    navToggle.addEventListener('click', () => {
+        if (navPanel.classList.contains('active')) {
+            closeNav();
+        } else {
+            openNav();
+        }
+    });
+
+    navOverlay.addEventListener('click', closeNav);
+
+    // Smooth scrolling
+    document.querySelectorAll('.nav-panel a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+
+            if (targetSection) {
+                closeNav();
+                setTimeout(() => {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 300);
+
+                document.querySelectorAll('.nav-panel a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            }
+        });
+    });
+
+    // Highlight active section on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-panel a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 100) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Close nav on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navPanel.classList.contains('active')) {
+            closeNav();
+        }
+    });
+
+    // Initial Calculation
+    calculate();
+</script>
+</body>
+</html>

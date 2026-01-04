@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Passive Power Tower Guide</title>
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <style>
+        :root {
+            --primary: #2f855a;
+            --primary-dark: #22543d;
+            --accent: #2b6cb0;
+            --bg: #f7fafc;
+            --card-bg: #ffffff;
+            --text: #2d3748;
+            --border: #e2e8f0;
+            --warning: #ed8936;
+            --danger: #e53e3e;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 { margin: 0; font-size: 2.5rem; letter-spacing: 1px; }
+        header p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
+
+        .source-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .source-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Sections */
+        section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        h2 { color: var(--primary-dark); border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-top: 0; }
+        h3 { color: var(--accent); margin-top: 25px; }
+
+        /* Calculator */
+        .calculator-box {
+            background: #ebf8ff;
+            border: 2px solid var(--accent);
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .result-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .result-card strong { display: block; font-size: 1.4rem; color: var(--primary); }
+        .result-card small { color: #718096; }
+
+        /* Diagrams */
+        .diagram-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+            background: #f0fff4;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #c6f6d5;
+        }
+
+        /* Tip Box */
+        .tip-box {
+            background: #fffaf0;
+            border-left: 4px solid var(--warning);
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .warning-box {
+            border-left: 5px solid var(--danger);
+            background-color: #fff5f5;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .checklist li:hover {
+            background-color: #f7fafc;
+        }
+
+        .checklist input[type="checkbox"] {
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* SVG Styles */
+        text { font-family: sans-serif; }
+
+        /* Navigation Toggle Button */
+        .nav-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-toggle:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .nav-toggle .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .nav-toggle .hamburger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .nav-toggle.active .hamburger span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active .hamburger span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active .hamburger span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Navigation Overlay */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Navigation Panel */
+        .nav-panel {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 300px;
+            height: 100vh;
+            background: var(--card-bg);
+            box-shadow: none;
+            z-index: 1000;
+            padding: 80px 25px 25px 25px;
+            overflow-y: auto;
+            transition: left 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .nav-panel.active {
+            left: 0;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+        }
+
+        .nav-panel h3 {
+            margin: 0 0 20px 0;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+        }
+
+        .nav-panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-panel li {
+            margin: 0;
+        }
+
+        .nav-panel a {
+            color: var(--accent);
+            text-decoration: none;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-size: 1rem;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-panel a:hover {
+            background: var(--bg);
+            color: var(--primary);
+            border-left-color: var(--primary);
+        }
+
+        .nav-panel a.active {
+            background: var(--primary);
+            color: white;
+            border-left-color: var(--primary-dark);
+        }
+
+        /* Mobile optimisations */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                top: 15px;
+                left: 15px;
+                padding: 10px 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-panel {
+                width: 85%;
+                padding: 70px 20px 20px 20px;
+            }
+        }
+
+        /* Home Button */
+        .home-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .home-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 768px) {
+            .home-btn {
+                top: 15px;
+                right: 15px;
+                padding: 8px 14px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Home Button -->
+<a href="index.html" class="home-btn">🏠 Home</a>
+
+<!-- Navigation Toggle Button -->
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <span>Menu</span>
+</button>
+
+<!-- Navigation Overlay -->
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- Navigation Panel -->
+<nav class="nav-panel" id="navPanel">
+    <h3>Quick Navigation</h3>
+    <ul>
+        <li><a href="#concept">The Concept</a></li>
+        <li><a href="#calculator">Nutrient Calculator</a></li>
+        <li><a href="#setup">Setup Visualisation</a></li>
+        <li><a href="#fabrication">Fabrication</a></li>
+        <li><a href="#checklist">Success Checklist</a></li>
+    </ul>
+</nav>
+
+<header>
+    <h1>The Passive Power Tower</h1>
+    <p>Vertical Hydroponics • Passive • Off-Grid</p>
+    <a href="https://www.youtube.com/watch?v=FM-F8EMZLZ4" target="_blank" class="source-link">
+        📺 Original Video: No Hype Guide to Build a Grow Tower for $10
+    </a>
+</header>
+
+<div class="container">
+
+    <!-- CONCEPT -->
+    <section id="concept">
+        <h2>The Concept</h2>
+        <p>This system uses <strong>Passive Hydroponics</strong> (Kratky Method). There are no pumps, no timers, and no electricity. The plants sit in a 5-gallon reservoir. As they drink, the water level lowers, exposing the upper roots to oxygen (Air Roots) whilst the lower roots remain submerged (Water Roots).</p>
+        <div class="warning-box">
+            <strong>Key Principle:</strong> The 5-gallon volume acts as a "Thermal Buffer," keeping water cool in the heat to prevent root rot. Do not use smaller containers for outdoor towers in hot climates.
+        </div>
+    </section>
+
+    <!-- CALCULATOR -->
+    <section id="calculator">
+        <h2>Metric Nutrient Calculator</h2>
+        <p>Calculate the exact mix for your reservoir size. Based on standard Masterblend 4-18-38 Tomato Formula (Leafy Green safe).</p>
+
+        <div class="calculator-box">
+            <div class="input-group">
+                <label><strong>Enter Reservoir Volume (Litres):</strong></label>
+                <input type="number" id="litersInput" placeholder="e.g., 19 for one bucket" value="19" oninput="calculateNutrients()">
+                <small>Note: A standard 5-Gallon bucket holds approx. 19 Litres.</small>
+            </div>
+
+            <div class="results-grid">
+                <div class="result-card">
+                    <small>Masterblend</small>
+                    <strong id="mbResult">0 g</strong>
+                    <small>4-18-38 Base</small>
+                </div>
+                <div class="result-card">
+                    <small>Epsom Salt</small>
+                    <strong id="esResult">0 g</strong>
+                    <small>Magnesium Sulphate</small>
+                </div>
+                <div class="result-card">
+                    <small>Calcium Nitrate</small>
+                    <strong id="cnResult">0 g</strong>
+                    <small>15.5-0-0</small>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 15px; font-size: 0.9rem;"><em>*Always mix in this order: Warm Water → Masterblend (Dissolve) → Epsom (Dissolve) → Calcium Nitrate (Last).</em></p>
+        </div>
+    </section>
+
+    <!-- SETUP VISUALIZATION -->
+    <section id="setup">
+        <h2>Setup Visualisation</h2>
+        <div class="diagram-container" style="text-align: center;">
+            <img src="images/powertower.png" alt="Passive Power Tower root zone dynamics showing bucket cross-section with air gap, water level, and rear observation port" style="max-width: 400px; max-height: 500px; height: auto; border-radius: 8px;">
+        </div>
+        <h3>The "No-Touch" Rule</h3>
+        <p>In the diagram above, note the <strong>Observation Port</strong>. When maintaining the tower, insert your finger into this hole. If you can feel moisture/water, <strong>DO NOT REFILL</strong>. Plants grow "Air Roots" in the gap between the collar and the water. If you fill the bucket to the top, you drown these roots, and the plant will die within days.</p>
+    </section>
+
+    <!-- FABRICATION -->
+    <section id="fabrication">
+        <h2>Fabrication & Assembly</h2>
+        <ul>
+            <li><strong>The Drill Bit:</strong> Use a 1.75 inch (44mm) Hole Saw. This makes a hole slightly smaller than the 2-inch collar, ensuring a watertight friction fit.</li>
+            <li><strong>Hole Placement:</strong> Drill as high up as possible, just below the structural rim of the bucket. This maximises water capacity.</li>
+            <li><strong>Density:</strong>
+                <ul>
+                    <li>Leafy Greens/Lettuce: 6-8 holes per bucket.</li>
+                    <li>Tomatoes/Peppers: 2-3 holes per bucket.</li>
+                </ul>
+            </li>
+            <li><strong>The Back Door:</strong> Always drill one hole in the "back" (opposite your main plants) to use as a fill port. Leave this empty or plug it with a removable collar.</li>
+        </ul>
+    </section>
+
+    <!-- CHECKLIST -->
+    <section id="checklist">
+        <h2>Checklist for Success</h2>
+        <ul class="checklist">
+            <li><label><input type="checkbox"> <strong>Food Grade:</strong> I am using food-safe buckets (HDPE #2).</label></li>
+            <li><label><input type="checkbox"> <strong>Light Block:</strong> If my buckets are white/translucent, I have painted them or wrapped them to prevent algae.</label></li>
+            <li><label><input type="checkbox"> <strong>Root Rinse:</strong> I have gently rinsed the soil off my transplants (it doesn't have to be perfect).</label></li>
+            <li><label><input type="checkbox"> <strong>Initial Fill:</strong> For brand new plants, the water touches the bottom of the foam collar.</label></li>
+            <li><label><input type="checkbox"> <strong>Air Gap:</strong> For established plants, I am leaving 2-3 inches of air space at the top.</label></li>
+            <li><label><input type="checkbox"> <strong>Temperature:</strong> My buckets are shaded from the harsh afternoon sun.</label></li>
+        </ul>
+    </section>
+
+</div>
+
+<script>
+    function calculateNutrients() {
+        // Constants per Litre (Based on standard Masterblend Recipe: 12g MB / 19L approx)
+        const MB_RATIO = 0.64;
+        const ES_RATIO = 0.32;
+        const CN_RATIO = 0.64;
+
+        let liters = parseFloat(document.getElementById('litersInput').value) || 0;
+
+        if (liters < 0) liters = 0;
+
+        // Calculate
+        let mb = (liters * MB_RATIO).toFixed(1);
+        let es = (liters * ES_RATIO).toFixed(1);
+        let cn = (liters * CN_RATIO).toFixed(1);
+
+        // Update UI
+        document.getElementById('mbResult').innerText = mb + ' g';
+        document.getElementById('esResult').innerText = es + ' g';
+        document.getElementById('cnResult').innerText = cn + ' g';
+    }
+
+    // Navigation Toggle Logic
+    const navToggle = document.getElementById('navToggle');
+    const navPanel = document.getElementById('navPanel');
+    const navOverlay = document.getElementById('navOverlay');
+
+    function openNav() {
+        navPanel.classList.add('active');
+        navOverlay.classList.add('active');
+        navToggle.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeNav() {
+        navPanel.classList.remove('active');
+        navOverlay.classList.remove('active');
+        navToggle.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    navToggle.addEventListener('click', () => {
+        if (navPanel.classList.contains('active')) {
+            closeNav();
+        } else {
+            openNav();
+        }
+    });
+
+    navOverlay.addEventListener('click', closeNav);
+
+    // Smooth scrolling
+    document.querySelectorAll('.nav-panel a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+
+            if (targetSection) {
+                closeNav();
+                setTimeout(() => {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 300);
+
+                document.querySelectorAll('.nav-panel a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            }
+        });
+    });
+
+    // Highlight active section on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-panel a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 100) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Close nav on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navPanel.classList.contains('active')) {
+            closeNav();
+        }
+    });
+
+    // Initial calculation
+    calculateNutrients();
+</script>
+
+</body>
+</html>
