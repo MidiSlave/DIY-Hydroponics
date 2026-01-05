@@ -113,20 +113,6 @@
             font-size: 1.2em;
         }
 
-        .secret-sauce .measurement strong {
-            display: inline;
-            margin-bottom: 0;
-            font-size: 1em;
-        }
-
-        .secret-heading {
-            color: var(--accent);
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 1.2em;
-            white-space: nowrap;
-        }
-
         /* Calculator Styling */
         .calculator-grid {
             display: grid;
@@ -235,11 +221,6 @@
             padding: 0.5rem;
             border-radius: 6px;
             transition: background 0.2s;
-            gap: 1rem;
-            line-height: 1.6;
-            word-spacing: 0.05em;
-            overflow-wrap: break-word;
-            text-rendering: optimizeLegibility;
         }
 
         .checklist li:hover {
@@ -247,22 +228,12 @@
         }
 
         .checklist input[type="checkbox"] {
+            margin-right: 1rem;
             margin-top: 0.3rem;
             width: 20px;
             height: 20px;
             accent-color: var(--primary);
             cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .checklist-text {
-            flex: 1;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-
-        .measurement {
-            white-space: nowrap;
         }
 
         /* Video Grid Styling */
@@ -572,8 +543,8 @@
         
         <div class="secret-sauce">
             <strong>✨ The Secret Sauce</strong>
-            <p><strong class="secret-heading">1. Paint Strainer Bags:</strong> Instead of filling the entire bucket with loose perlite (which clogs drains and makes end-of-season cleanup a nightmare), line the bucket with a 5-gallon paint strainer bag. This keeps the medium contained and allows you to lift the entire root ball out cleanly.</p>
-            <p><strong class="secret-heading">2. The "Siphon" Elbow:</strong> A simple PVC elbow placed on the <em>inside</em> of the drain hole creates a ~2-inch deep nutrient reservoir at the bottom of every bucket. This provides a safety buffer for roots in case of pump failure or hot days.</p>
+            <p>1. <strong>Paint Strainer Bags:</strong> Instead of filling the entire bucket with loose perlite (which clogs drains and makes end-of-season cleanup a nightmare), line the bucket with a 5-gallon paint strainer bag. This keeps the medium contained and allows you to lift the entire root ball out cleanly.</p>
+            <p>2. <strong>The "Siphon" Elbow:</strong> A simple PVC elbow placed on the <em>inside</em> of the drain hole creates a ~2-inch deep nutrient reservoir at the bottom of every bucket. This provides a safety buffer for roots in case of pump failure or hot days.</p>
         </div>
     </div>
 
@@ -582,6 +553,7 @@
         <h2>🛠️ System Schematic</h2>
         <div class="schematic-container">
             <img src="images/dutchbucket.png" alt="Dutch Bucket system showing 5-gallon bucket with paint strainer bag, perlite medium, siphon elbow, and 2-inch reservoir zone" style="max-width: 100%; height: auto; border-radius: 8px;">
+            <p><em>Figure 1: The "DIY Dutch Bucket" using a siphon elbow to maintain a 2-inch nutrient zone.</em></p>
         </div>
     </div>
 
@@ -591,28 +563,28 @@
         
         <h3>1. Bucket Preparation</h3>
         <ul class="checklist">
-            <li><input type="checkbox"><span class="checklist-text"> Acquire <strong><span class="measurement">3 to 5-gallon</span> buckets</strong> (Square buckets sit nicer on rails, but round works perfectly fine).</span></li>
-            <li><input type="checkbox"><span class="checklist-text"> Drill a <strong><span class="measurement">1-inch</span> hole</strong> exactly <strong><span class="measurement">2 inches</span> up from the bottom</strong> of the bucket. This specific height sets your internal water reservoir level.</span></li>
-            <li><input type="checkbox"><span class="checklist-text"> Insert a <strong><span class="measurement">3/4"</span> rubber grommet</strong> into the <span class="measurement">1-inch</span> hole.</span></li>
-            <li><input type="checkbox"><span class="checklist-text"> Insert a small piece of <span class="measurement">1/2"</span> PVC pipe through the grommet to act as the drain stub.</span></li>
-            <li><input type="checkbox"><span class="checklist-text"> <strong>The Trick:</strong> Attach a <span class="measurement">1/2"</span> PVC elbow on the <em>inside</em> of the bucket, pointing DOWN. This forces water to rise to the level of the hole before draining, ensuring roots always have access to liquid.</span></li>
+            <li><input type="checkbox"> Acquire <strong>3 to 5-gallon buckets</strong> (Square buckets sit nicer on rails, but round works perfectly fine).</li>
+            <li><input type="checkbox"> Drill a <strong>1-inch hole</strong> exactly <strong>2 inches up from the bottom</strong> of the bucket. This specific height sets your internal water reservoir level.</li>
+            <li><input type="checkbox"> Insert a <strong>3/4" rubber grommet</strong> into the 1-inch hole.</li>
+            <li><input type="checkbox"> Insert a small piece of 1/2" PVC pipe through the grommet to act as the drain stub.</li>
+            <li><input type="checkbox"> <strong>The Trick:</strong> Attach a 1/2" PVC elbow on the <em>inside</em> of the bucket, pointing DOWN. This forces water to rise to the level of the hole before draining, ensuring roots always have access to liquid.</li>
         </ul>
 
         <h3>2. The Drain & Feed System</h3>
         <ul class="checklist">
-            <li><input type="checkbox"><span class="checklist-text"> Sit buckets on a support structure (wood bench or cinder blocks).</span></li>
-            <li><input type="checkbox"><span class="checklist-text"> Run a <strong><span class="measurement">2-inch</span> PVC pipe</strong> underneath the bucket drains. Drill holes in the <span class="measurement">2"</span> pipe to accept the drain stubs from the buckets.</span></li>
-            <li><input type="checkbox"><span class="checklist-text"> Run <strong><span class="measurement">1/2"</span> Poly tubing</strong> along the buckets for the main feed line.</span></li>
-            <li><input type="checkbox"><span class="checklist-text"> Punch holes and insert <strong><span class="measurement">1/4"</span> spaghetti tubing</strong> (or drip emitters) to feed the top of each plant.</span></li>
-            <li><input type="checkbox"><span class="checklist-text"> <strong>Pump:</strong> A <span class="measurement">264 GPH</span> submersible pump (like EcoPlus 264) is sufficient for a standard setup of <span class="measurement">10-20</span> buckets.</span></li>
+            <li><input type="checkbox"> Sit buckets on a support structure (wood bench or cinder blocks).</li>
+            <li><input type="checkbox"> Run a <strong>2-inch PVC pipe</strong> underneath the bucket drains. Drill holes in the 2" pipe to accept the drain stubs from the buckets.</li>
+            <li><input type="checkbox"> Run <strong>1/2" Poly tubing</strong> along the buckets for the main feed line.</li>
+            <li><input type="checkbox"> Punch holes and insert <strong>1/4" spaghetti tubing</strong> (or drip emitters) to feed the top of each plant.</li>
+            <li><input type="checkbox"> <strong>Pump:</strong> A 264 GPH submersible pump (like EcoPlus 264) is sufficient for a standard setup of 10-20 buckets.</li>
         </ul>
 
         <h3>3. Planting</h3>
         <ul class="checklist">
-            <li><input type="checkbox"><span class="checklist-text"> <strong>Wash your perlite</strong> thoroughly to remove dust. Do this outside with a hose!</span></li>
-            <li><input type="checkbox"><span class="checklist-text"> Place a <strong><span class="measurement">5-gallon</span> paint strainer bag</strong> into the bucket.</span></li>
-            <li><input type="checkbox"><span class="checklist-text"> Fill the bag with the washed perlite.</span></li>
-            <li><input type="checkbox"><span class="checklist-text"> Transplant seedlings directly into the perlite.</span></li>
+            <li><input type="checkbox"> <strong>Wash your perlite</strong> thoroughly to remove dust. Do this outside with a hose!</li>
+            <li><input type="checkbox"> Place a <strong>5-gallon paint strainer bag</strong> into the bucket.</li>
+            <li><input type="checkbox"> Fill the bag with the washed perlite.</li>
+            <li><input type="checkbox"> Transplant seedlings directly into the perlite.</li>
         </ul>
     </div>
 
